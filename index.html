@@ -1,14 +1,604 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Simple Page</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WishVerse</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+    scroll-behavior:smooth;
+}
+
+body{
+    background:radial-gradient(circle at center,#18275c 0%,#070b18 45%,#000 100%);
+    color:white;
+    overflow-x:hidden;
+}
+
+nav{
+    position:fixed;
+    top:0;
+    width:100%;
+    padding:20px 50px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(0,0,0,0.2);
+    backdrop-filter:blur(12px);
+    z-index:1000;
+}
+
+nav h1{
+    font-size:28px;
+}
+
+nav ul{
+    display:flex;
+    gap:35px;
+    list-style:none;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    font-size:17px;
+}
+
+section{
+    min-height:100vh;
+    position:relative;
+    padding:120px 60px;
+}
+
+.cosmic-light{
+    position:absolute;
+    width:3px;
+    height:120px;
+    background:linear-gradient(transparent,white);
+    opacity:0.7;
+    border-radius:50px;
+    animation:fly 7s linear infinite;
+}
+
+@keyframes fly{
+    from{
+        transform:translateY(-200px) translateX(0px) rotate(25deg);
+    }
+    to{
+        transform:translateY(120vh) translateX(500px) rotate(25deg);
+    }
+}
+
+.home{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.home h1{
+    font-size:75px;
+    margin-bottom:20px;
+    text-shadow:0 0 30px #8f7bff;
+}
+
+.home p{
+    max-width:850px;
+    line-height:35px;
+    font-size:20px;
+    color:#d9d9d9;
+}
+
+.quote{
+    margin-top:20px;
+    color:#aab7ff;
+    font-style:italic;
+}
+
+.hero-btn{
+    margin-top:40px;
+    padding:18px 35px;
+    border:none;
+    border-radius:50px;
+    background:#8f7bff;
+    color:white;
+    cursor:pointer;
+    font-size:18px;
+    transition:0.3s;
+}
+
+.hero-btn:hover{
+    transform:scale(1.08);
+}
+
+.feature{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:60px;
+    margin-top:120px;
+    flex-wrap:wrap;
+}
+
+.feature img{
+    width:450px;
+    border-radius:25px;
+    box-shadow:0 0 40px rgba(255,255,255,0.15);
+}
+
+.feature-text{
+    max-width:500px;
+}
+
+.feature-text h2{
+    margin-bottom:20px;
+    font-size:42px;
+}
+
+.feature-text p{
+    line-height:32px;
+    color:#d0d0d0;
+}
+
+.explore{
+    overflow:hidden;
+}
+
+.input-box{
+    text-align:center;
+    margin-top:100px;
+}
+
+.input-box h2{
+    font-size:55px;
+    margin-bottom:20px;
+}
+
+.input-box p{
+    margin-bottom:30px;
+    color:#d8d8d8;
+}
+
+.input-area{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+input{
+    width:420px;
+    padding:18px 25px;
+    border:none;
+    border-radius:50px;
+    outline:none;
+    background:rgba(255,255,255,0.1);
+    color:white;
+    border:1px solid rgba(255,255,255,0.2);
+    font-size:16px;
+}
+
+button{
+    padding:18px 30px;
+    border:none;
+    border-radius:50px;
+    background:#8f7bff;
+    color:white;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.08);
+}
+
+.wish-star{
+    position:absolute;
+    width:18px;
+    height:18px;
+    background:white;
+    clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+    box-shadow:0 0 25px white,0 0 45px #8f7bff;
+    animation:float 5s infinite ease-in-out alternate;
+    cursor:pointer;
+}
+
+@keyframes float{
+    from{
+        transform:translateY(0px);
+    }
+    to{
+        transform:translateY(-18px);
+    }
+}
+
+.fly-star{
+    position:absolute;
+    font-size:40px;
+    z-index:100;
+    animation:wishFly 2.5s forwards ease-in-out;
+}
+
+@keyframes wishFly{
+    0%{
+        left:50%;
+        top:45%;
+        transform:translate(-50%,-50%) scale(1);
+        opacity:1;
+    }
+
+    50%{
+        transform:translate(-50%,-50%) scale(1.8);
+    }
+
+    100%{
+        left:var(--x);
+        top:var(--y);
+        transform:scale(0.4);
+        opacity:0;
+    }
+}
+
+.popup{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:350px;
+    padding:30px;
+    border-radius:25px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,0.15);
+    text-align:center;
+    display:none;
+    z-index:9999;
+}
+
+.popup h3{
+    margin-bottom:20px;
+}
+
+.popup p{
+    line-height:30px;
+    margin-bottom:25px;
+}
+
+.popup-buttons{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+}
+
+.analysis-cards{
+    margin-top:100px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+}
+
+.card{
+    background:rgba(255,255,255,0.08);
+    padding:40px;
+    border-radius:25px;
+    backdrop-filter:blur(12px);
+    text-align:center;
+    border:1px solid rgba(255,255,255,0.1);
+}
+
+.card h2{
+    font-size:55px;
+    margin-bottom:15px;
+}
+
+.card p{
+    color:#d9d9d9;
+}
+
+.confetti{
+    position:absolute;
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    box-shadow:0 0 20px white,0 0 40px currentColor;
+    animation:cosmicBurst 3s linear forwards;
+}
+
+.spark{
+    position:absolute;
+    width:4px;
+    height:50px;
+    background:linear-gradient(transparent,white);
+    opacity:0.8;
+    border-radius:50px;
+    animation:sparkFly 2s linear forwards;
+}
+@keyframes cosmicBurst{
+    0%{
+        transform:translateY(0) scale(1) rotate(0deg);
+        opacity:1;
+    }
+
+    100%{
+        transform:translateY(700px) scale(0) rotate(720deg);
+        opacity:0;
+    }
+}
+
+@keyframes sparkFly{
+    0%{
+        opacity:1;
+    }
+
+    100%{
+        transform:translateY(500px) rotate(30deg);
+        opacity:0;
+    }
+}
+
+</style>
 </head>
 <body>
 
-    <h1>Welcome to My Website</h1>
-    <p>This is a simple HTML page.</p>
+<nav>
+    <h1>WishVerse 🌌</h1>
 
-    <button onclick="alert('Hello!')">Click Me</button>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#explore">Explore</a></li>
+        <li><a href="#analysis">Analysis</a></li>
+    </ul>
+</nav>
+
+<section class="home" id="home">
+
+<h1>WishVerse 🌌</h1>
+
+<p>
+Every glowing star in this universe was once someone's dream.
+Type your wish below and watch it become part of the cosmos.
+</p>
+
+<p class="quote">
+"Some dreams take time to become stars." 🌌
+</p>
+
+<button class="hero-btn" onclick="document.getElementById('explore').scrollIntoView()">
+Get Started
+</button>
+
+<div class="feature">
+    <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=1200&auto=format&fit=crop">
+
+    <div class="feature-text">
+        <h2>Turn Dreams Into Stars</h2>
+        <p>
+        Every wish you enter transforms into a glowing cosmic star floating through the universe.
+        Build your own emotional galaxy of dreams.
+        </p>
+    </div>
+</div>
+
+<div class="feature">
+
+    <div class="feature-text">
+        <h2>Track Your Journey</h2>
+        <p>
+        Watch completed dreams disappear in a cosmic explosion while your remaining stars continue glowing in the universe.
+        </p>
+    </div>
+
+    <img src="https://images.unsplash.com/photo-1502134249126-9f3755a50d78?q=80&w=1200&auto=format&fit=crop">
+
+</div>
+
+</section>
+
+<section class="explore" id="explore">
+
+<div class="input-box">
+    <h2>Create Your Star ✨</h2>
+    <p>Write your wish and release it into the universe.</p>
+
+    <div class="input-area">
+        <input type="text" id="wishInput" placeholder="I want to achieve...">
+        <button onclick="createWish()">Send Wish</button>
+    </div>
+</div>
+
+</section>
+
+<section id="analysis">
+
+<h1 style="text-align:center;font-size:60px;">
+Galaxy Analysis 📊
+</h1>
+
+<div class="analysis-cards">
+
+<div class="card">
+    <h2 id="totalStars">0</h2>
+    <p>Total Wishes</p>
+</div>
+
+<div class="card">
+    <h2 id="completedStars">0</h2>
+    <p>Completed Wishes</p>
+</div>
+
+<div class="card">
+    <h2 id="remainingStars">0</h2>
+    <p>Remaining Stars</p>
+</div>
+
+</div>
+
+</section>
+
+<div class="popup" id="popup">
+    <h3>⭐ Your Wish</h3>
+    <p id="popupWish"></p>
+
+    <div class="popup-buttons">
+        <button onclick="closePopup()">Close</button>
+        <button onclick="completeWish()">Wish Completed</button>
+    </div>
+</div>
+
+<script>
+
+const explore=document.getElementById("explore");
+const popup=document.getElementById("popup");
+const popupWish=document.getElementById("popupWish");
+
+let activeStar=null;
+let total=0;
+let completed=0;
+
+for(let i=0;i<35;i++){
+
+    let cosmic=document.createElement("div");
+    cosmic.classList.add("cosmic-light");
+
+    cosmic.style.left=Math.random()*window.innerWidth+"px";
+    cosmic.style.animationDelay=Math.random()*6+"s";
+
+    document.body.appendChild(cosmic);
+}
+
+function createWish(){
+
+    const input=document.getElementById("wishInput");
+    const wish=input.value.trim();
+
+    if(wish===""){
+        return;
+    }
+
+    let x=Math.random()*(window.innerWidth-100)+50;
+    let y=Math.random()*(window.innerHeight-250)+100;
+
+    let fly=document.createElement("div");
+    fly.innerHTML="✨";
+    fly.classList.add("fly-star");
+
+    fly.style.setProperty("--x",x+"px");
+    fly.style.setProperty("--y",y+"px");
+
+    explore.appendChild(fly);
+
+    setTimeout(()=>{
+
+        fly.remove();
+
+        let star=document.createElement("div");
+        star.classList.add("wish-star");
+
+        star.style.left=x+"px";
+        star.style.top=y+"px";
+
+        star.dataset.wish=wish;
+
+        star.onclick=()=>{
+            activeStar=star;
+            popup.style.display="block";
+            popupWish.innerText=wish;
+        }
+
+        explore.appendChild(star);
+
+    },2400);
+
+    total++;
+    updateAnalysis();
+
+    input.value="";
+}
+
+function closePopup(){
+    popup.style.display="none";
+}
+
+function completeWish(){
+
+    if(activeStar){
+
+        createCosmicConfetti();
+
+        activeStar.remove();
+
+        completed++;
+
+        updateAnalysis();
+
+        popupWish.innerText="Congratulations ✨ Your dream became reality.";
+
+        setTimeout(()=>{
+            popup.style.display="none";
+        },2000);
+    }
+}
+
+function updateAnalysis(){
+
+    document.getElementById("totalStars").innerText=total;
+    document.getElementById("completedStars").innerText=completed;
+    document.getElementById("remainingStars").innerText=total-completed;
+}
+
+function createConfetti(){
+
+    for(let i=0;i<150;i++){
+
+        let confetti=document.createElement("div");
+        confetti.classList.add("confetti");
+
+        confetti.style.left=Math.random()*window.innerWidth+"px";
+        confetti.style.top=Math.random()*window.innerHeight/2+"px";
+
+        confetti.style.background=`hsl(${Math.random()*360},100%,60%)`;
+
+        document.body.appendChild(confetti);
+
+        let spark=document.createElement("div");
+        spark.classList.add("spark");
+
+        spark.style.left=Math.random()*window.innerWidth+"px";
+        spark.style.top=Math.random()*window.innerHeight/2+"px";
+
+        document.body.appendChild(spark);
+
+        setTimeout(()=>{
+            confetti.remove();
+            spark.remove();
+        },3000);
+    }
+}
+
+
+window.addEventListener("keydown",(e)=>{
+
+    if(e.key==="Enter"){
+        createWish();
+    }
+});
+
+</script>
 
 </body>
 </html>
+
+
+
+
+
+
+
+
