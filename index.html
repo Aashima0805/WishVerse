@@ -3,280 +3,293 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WishVerse</title>
+
+<title>WishVerse 🌌</title>
 
 <style>
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
     font-family:Arial,Helvetica,sans-serif;
+}
+
+html{
     scroll-behavior:smooth;
 }
 
 body{
-    background:radial-gradient(circle at center,#18275c 0%,#070b18 45%,#000 100%);
+    background:#020412;
     color:white;
     overflow-x:hidden;
 }
 
+/* NAVBAR */
+
 nav{
+    width:100%;
     position:fixed;
     top:0;
-    width:100%;
-    padding:20px 50px;
+    left:0;
+    padding:20px 60px;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    background:rgba(0,0,0,0.2);
-    backdrop-filter:blur(12px);
     z-index:1000;
+    background:rgba(0,0,0,0.25);
+    backdrop-filter:blur(10px);
 }
 
-nav h1{
-    font-size:28px;
+.logo{
+    font-size:30px;
+    font-weight:bold;
+    color:#fff;
 }
 
 nav ul{
     display:flex;
-    gap:35px;
     list-style:none;
+    gap:40px;
 }
 
-nav a{
-    color:white;
+nav ul li a{
     text-decoration:none;
-    font-size:17px;
+    color:white;
+    font-size:18px;
+    transition:0.3s;
 }
 
-section{
+nav ul li a:hover{
+    color:#8f7bff;
+}
+
+/* HERO */
+
+.hero{
     min-height:100vh;
-    position:relative;
-    padding:120px 60px;
-}
-
-.cosmic-light{
-    position:absolute;
-    width:160px;
-    height:2px;
-    background:linear-gradient(to right,transparent,white,transparent);
-    opacity:0.6;
-    border-radius:50px;
-    transform:rotate(-35deg);
-    animation:fly 8s linear infinite;
-    filter:blur(1px);
-}
-
-@keyframes fly{
-
-    from{
-        transform:translate(-300px,-200px) rotate(-35deg);
-        opacity:0;
-    }
-
-    20%{
-        opacity:1;
-    }
-
-    to{
-        transform:translate(1500px,900px) rotate(-35deg);
-        opacity:0;
-    }
-}
-
-.home{
     display:flex;
-    flex-direction:column;
-    justify-content:center;
     align-items:center;
+    justify-content:center;
     text-align:center;
+    position:relative;
+    overflow:hidden;
+    padding:120px 20px;
 }
 
-.home h1{
+.hero-content{
+    position:relative;
+    z-index:10;
+}
+
+.hero h1{
     font-size:75px;
     margin-bottom:20px;
     text-shadow:0 0 30px #8f7bff;
 }
 
-.home p{
-    max-width:850px;
-    line-height:35px;
-    font-size:20px;
-    color:#d9d9d9;
+.hero p{
+    font-size:22px;
+    color:#d8d8d8;
+    margin-bottom:15px;
 }
 
 .quote{
-    margin-top:20px;
-    color:#aab7ff;
+    color:#9fa8ff;
+    margin-bottom:35px;
     font-style:italic;
 }
 
-.hero-btn{
-    margin-top:40px;
-    padding:18px 35px;
+.hero button{
+    padding:18px 40px;
     border:none;
     border-radius:50px;
     background:#8f7bff;
     color:white;
-    cursor:pointer;
     font-size:18px;
+    cursor:pointer;
     transition:0.3s;
 }
 
-.hero-btn:hover{
+.hero button:hover{
     transform:scale(1.08);
 }
 
-.feature{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:60px;
-    margin-top:120px;
-    flex-wrap:wrap;
+/* SECTION */
+
+section{
+    min-height:100vh;
+    padding:120px 60px;
+    position:relative;
 }
 
-.feature img{
-    width:450px;
-    border-radius:25px;
-    box-shadow:0 0 40px rgba(255,255,255,0.15);
-}
-
-.feature-text{
-    max-width:500px;
-}
-
-.feature-text h2{
-    margin-bottom:20px;
-    font-size:42px;
-}
-
-.feature-text p{
-    line-height:32px;
-    color:#d0d0d0;
-}
-
-.explore{
-    overflow:hidden;
-}
-
-.input-box{
+.section-title{
     text-align:center;
-    margin-top:100px;
-}
-
-.input-box h2{
     font-size:55px;
-    margin-bottom:20px;
+    margin-bottom:60px;
 }
 
-.input-box p{
-    margin-bottom:30px;
-    color:#d8d8d8;
+/* HOME CARDS */
+
+.home-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+    gap:40px;
+}
+
+.home-card{
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.1);
+    padding:30px;
+    border-radius:25px;
+    backdrop-filter:blur(10px);
+    transition:0.4s;
+}
+
+.home-card:hover{
+    transform:translateY(-10px);
+}
+
+.home-card img{
+    width:100%;
+    border-radius:20px;
+    margin-bottom:20px;
+    height:220px;
+    object-fit:cover;
+}
+
+.home-card h2{
+    margin-bottom:15px;
+    color:#b6b7ff;
+}
+
+.home-card p{
+    line-height:28px;
+    color:#ddd;
+}
+
+/* EXPLORE */
+
+.explore-box{
+    max-width:700px;
+    margin:auto;
+    text-align:center;
 }
 
 .input-area{
     display:flex;
+    gap:20px;
     justify-content:center;
-    gap:15px;
     flex-wrap:wrap;
 }
 
 input{
     width:420px;
-    padding:18px 25px;
+    padding:20px;
     border:none;
     border-radius:50px;
     outline:none;
-    background:rgba(255,255,255,0.1);
+    background:rgba(255,255,255,0.08);
     color:white;
-    border:1px solid rgba(255,255,255,0.2);
     font-size:16px;
+    border:1px solid rgba(255,255,255,0.15);
 }
 
-button{
-    padding:18px 30px;
+input::placeholder{
+    color:#ccc;
+}
+
+.send-btn{
+    padding:20px 35px;
     border:none;
     border-radius:50px;
     background:#8f7bff;
     color:white;
     cursor:pointer;
-    transition:0.3s;
+    font-size:16px;
 }
 
-button:hover{
-    transform:scale(1.08);
+/* STARS */
+
+#wishArea{
+    position:relative;
+    width:100%;
+    height:600px;
+    margin-top:60px;
+    overflow:hidden;
 }
 
 .wish-star{
     position:absolute;
-    width:18px;
-    height:18px;
+    width:22px;
+    height:22px;
     background:white;
     clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
-    box-shadow:0 0 25px white,0 0 45px #8f7bff;
-    animation:float 5s infinite ease-in-out alternate;
+    box-shadow:
+    0 0 12px white,
+    0 0 30px #8f7bff,
+    0 0 50px #8f7bff;
     cursor:pointer;
+    animation:float 4s ease-in-out infinite alternate;
 }
 
 @keyframes float{
     from{
         transform:translateY(0px);
     }
+
     to{
         transform:translateY(-18px);
     }
 }
 
-.fly-star{
-    position:absolute;
-    font-size:40px;
-    z-index:100;
-    animation:wishFly 2.5s forwards ease-in-out;
+/* ANALYSIS */
+
+.stats{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:30px;
 }
 
-@keyframes wishFly{
-    0%{
-        left:50%;
-        top:45%;
-        transform:translate(-50%,-50%) scale(1);
-        opacity:1;
-    }
-
-    50%{
-        transform:translate(-50%,-50%) scale(1.8);
-    }
-
-    100%{
-        left:var(--x);
-        top:var(--y);
-        transform:scale(0.4);
-        opacity:0;
-    }
+.stat-box{
+    width:280px;
+    padding:40px;
+    border-radius:25px;
+    background:rgba(255,255,255,0.08);
+    text-align:center;
+    backdrop-filter:blur(10px);
 }
+
+.stat-box h2{
+    font-size:55px;
+    color:#b4b6ff;
+    margin-bottom:15px;
+}
+
+/* POPUP */
 
 .popup{
     position:fixed;
     top:50%;
     left:50%;
     transform:translate(-50%,-50%);
-    width:350px;
+    width:360px;
+    background:rgba(255,255,255,0.1);
+    backdrop-filter:blur(18px);
     padding:30px;
     border-radius:25px;
-    background:rgba(255,255,255,0.08);
-    backdrop-filter:blur(18px);
-    border:1px solid rgba(255,255,255,0.15);
-    text-align:center;
     display:none;
-    z-index:9999;
+    z-index:1000;
+    text-align:center;
 }
 
-.popup h3{
+.popup h2{
     margin-bottom:20px;
 }
 
 .popup p{
-    line-height:30px;
+    line-height:28px;
     margin-bottom:25px;
 }
 
@@ -286,351 +299,671 @@ button:hover{
     gap:15px;
 }
 
-.analysis-cards{
-    margin-top:100px;
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:30px;
+.popup button{
+    padding:14px 22px;
+    border:none;
+    border-radius:50px;
+    cursor:pointer;
 }
 
-.card{
-    background:rgba(255,255,255,0.08);
-    padding:40px;
-    border-radius:25px;
-    backdrop-filter:blur(12px);
-    text-align:center;
-    border:1px solid rgba(255,255,255,0.1);
+.complete-btn{
+    background:#00d39d;
+    color:white;
 }
 
-.card h2{
-    font-size:55px;
-    margin-bottom:15px;
+.close-btn{
+    background:#555;
+    color:white;
 }
 
-.card p{
-    color:#d9d9d9;
+/* BACKGROUND STARS */
+
+.bg-star{
+    position:fixed;
+    width:2px;
+    height:2px;
+    background:white;
+    border-radius:50%;
+    opacity:0.8;
+    animation:twinkle 3s infinite alternate;
 }
+
+@keyframes twinkle{
+    from{
+        opacity:0.2;
+    }
+
+    to{
+        opacity:1;
+    }
+}
+
+/* DIAGONAL FLOWING LIGHTS */
+
+.flow-line{
+    position:fixed;
+    width:180px;
+    height:2px;
+    background:linear-gradient(to right,transparent,white,transparent);
+    opacity:0.5;
+    transform:rotate(-35deg);
+    animation:moveLine linear infinite;
+}
+
+@keyframes moveLine{
+    from{
+        transform:
+        translate(-200px,-200px)
+        rotate(-35deg);
+    }
+
+    to{
+        transform:
+        translate(1600px,1000px)
+        rotate(-35deg);
+    }
+}
+
+/* CONFETTI */
 
 .confetti{
-    position:absolute;
-    width:12px;
-    height:12px;
-    border-radius:50%;
-    box-shadow:0 0 20px white,0 0 40px currentColor;
-    animation:cosmicBurst 3s linear forwards;
+    position:fixed;
+    pointer-events:none;
+    z-index:2000;
 }
 
-.spark{
-    position:absolute;
-    width:4px;
-    height:80px;
-    background:linear-gradient(transparent,white);
-    opacity:0.8;
-    border-radius:50px;
-    transform:rotate(35deg);
-    animation:diagonalFlow 3s linear forwards;
-}
+/* RESPONSIVE */
 
-@keyframes diagonalFlow{
+@media(max-width:768px){
 
-    0%{
-        transform:translate(0px,0px) rotate(35deg);
-        opacity:1;
+    nav{
+        padding:20px;
+        flex-direction:column;
+        gap:20px;
     }
 
-    100%{
-        transform:translate(500px,700px) rotate(35deg);
-        opacity:0;
-    }
-}
-@keyframes cosmicBurst{
-    0%{
-        transform:translateY(0) scale(1) rotate(0deg);
-        opacity:1;
+    .hero h1{
+        font-size:50px;
     }
 
-    100%{
-        transform:translateY(700px) scale(0) rotate(720deg);
-        opacity:0;
-    }
-}
-
-@keyframes sparkFly{
-    0%{
-        opacity:1;
+    .section-title{
+        font-size:40px;
     }
 
-    100%{
-        transform:translateY(500px) rotate(30deg);
-        opacity:0;
+    input{
+        width:100%;
     }
+
 }
 
 </style>
 </head>
+
 <body>
 
 <nav>
-    <h1>WishVerse 🌌</h1>
 
-    <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#explore">Explore</a></li>
-        <li><a href="#analysis">Analysis</a></li>
-    </ul>
+<div class="logo">
+WishVerse 🌌
+</div>
+
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#explore">Explore</a></li>
+<li><a href="#analysis">Analysis</a></li>
+</ul>
+
 </nav>
 
-<section class="home" id="home">
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+<div class="hero-content">
 
 <h1>WishVerse 🌌</h1>
 
 <p>
 Every glowing star in this universe was once someone's dream.
-Type your wish below and watch it become part of the cosmos.
 </p>
 
 <p class="quote">
 "Some dreams take time to become stars." 🌌
 </p>
 
-<button class="hero-btn" onclick="document.getElementById('explore').scrollIntoView()">
+<button onclick="document.getElementById('explore').scrollIntoView()">
 Get Started
 </button>
 
-<div class="feature">
-    <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=1200&auto=format&fit=crop">
-
-    <div class="feature-text">
-        <h2>Turn Dreams Into Stars</h2>
-        <p>
-        Every wish you enter transforms into a glowing cosmic star floating through the universe.
-        Build your own emotional galaxy of dreams.
-        </p>
-    </div>
 </div>
 
-<div class="feature">
+</section>
 
-    <div class="feature-text">
-        <h2>Track Your Journey</h2>
-        <p>
-        Watch completed dreams disappear in a cosmic explosion while your remaining stars continue glowing in the universe.
-        </p>
-    </div>
+<!-- HOME -->
 
-    <img src="https://images.unsplash.com/photo-1502134249126-9f3755a50d78?q=80&w=1200&auto=format&fit=crop">
+<section>
+
+<h1 class="section-title">
+How It Works
+</h1>
+
+<div class="home-grid">
+
+<div class="home-card">
+
+<img src="https://images.unsplash.com/photo-1502134249126-9f3755a50d78?q=80&w=1200&auto=format&fit=crop">
+
+<h2>Write Your Dream</h2>
+
+<p>
+Type your wish into the universe and let your dream begin its cosmic journey.
+</p>
+
+</div>
+
+<div class="home-card">
+
+<img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=1200&auto=format&fit=crop">
+
+<h2>Become A Star</h2>
+
+<p>
+Your wish transforms into a glowing star floating through the galaxy forever.
+</p>
+
+</div>
+
+<div class="home-card">
+
+<img src="https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?q=80&w=1200&auto=format&fit=crop">
+
+<h2>Track Your Journey</h2>
+
+<p>
+Analyze completed wishes and remaining dreams through your cosmic dashboard.
+</p>
+
+</div>
 
 </div>
 
 </section>
 
-<section class="explore" id="explore">
+<!-- EXPLORE -->
 
-<div class="input-box">
-    <h2>Create Your Star ✨</h2>
-    <p>Write your wish and release it into the universe.</p>
+<section id="explore">
 
-    <div class="input-area">
-        <input type="text" id="wishInput" placeholder="I want to achieve...">
-        <button onclick="createWish()">Send Wish</button>
-    </div>
+<h1 class="section-title">
+Create A Wish ⭐
+</h1>
+
+<div class="explore-box">
+
+<div class="input-area">
+
+<input
+type="text"
+id="wishInput"
+placeholder="Type your wish here..."
+>
+
+<button
+class="send-btn"
+onclick="createWish()"
+>
+Send Wish
+</button>
+
+</div>
+
+<div id="wishArea"></div>
+
 </div>
 
 </section>
+
+<!-- ANALYSIS -->
 
 <section id="analysis">
 
-<h1 style="text-align:center;font-size:60px;">
-Galaxy Analysis 📊
+<h1 class="section-title">
+Wish Analytics 📊
 </h1>
 
-<div class="analysis-cards">
+<div class="stats">
 
-<div class="card">
-    <h2 id="totalStars">0</h2>
-    <p>Total Wishes</p>
+<div class="stat-box">
+<h2 id="totalCount">0</h2>
+<p>Total Wishes</p>
 </div>
 
-<div class="card">
-    <h2 id="completedStars">0</h2>
-    <p>Completed Wishes</p>
+<div class="stat-box">
+<h2 id="completedCount">0</h2>
+<p>Completed Wishes</p>
 </div>
 
-<div class="card">
-    <h2 id="remainingStars">0</h2>
-    <p>Remaining Stars</p>
+<div class="stat-box">
+<h2 id="remainingCount">0</h2>
+<p>Remaining Wishes</p>
 </div>
 
 </div>
 
 </section>
 
-<div class="popup" id="popup">
-    <h3>⭐ Your Wish</h3>
-    <p id="popupWish"></p>
+<!-- POPUP -->
 
-    <div class="popup-buttons">
-        <button onclick="closePopup()">Close</button>
-        <button onclick="completeWish()">Wish Completed</button>
-    </div>
+<div class="popup" id="popup">
+
+<h2>⭐ Your Wish</h2>
+
+<p id="popupWish"></p>
+
+<div class="popup-buttons">
+
+<button
+class="close-btn"
+onclick="closePopup()"
+>
+Close
+</button>
+
+<button
+class="complete-btn"
+onclick="completeWish()"
+>
+Wish Completed
+</button>
+
+</div>
+
 </div>
 
 <script>
 
-const explore=document.getElementById("explore");
+const wishArea=document.getElementById("wishArea");
 const popup=document.getElementById("popup");
 const popupWish=document.getElementById("popupWish");
 
 let activeStar=null;
-let total=0;
-let completed=0;
 
-for(let i=0;i<35;i++){
+let wishes=
+JSON.parse(localStorage.getItem("wishverse")) || [];
 
-    let cosmic=document.createElement("div");
-    cosmic.classList.add("cosmic-light");
+createBackground();
+createFlowLines();
+loadSavedStars();
+updateStats();
 
-    cosmic.style.left=Math.random()*window.innerWidth+"px";
-    cosmic.style.animationDelay=Math.random()*6+"s";
+/* BACKGROUND */
 
-    document.body.appendChild(cosmic);
+function createBackground()
+{
+    for(let i=0;i<250;i++)
+    {
+        let star=document.createElement("div");
+
+        star.className="bg-star";
+
+        star.style.left=
+        Math.random()*window.innerWidth+"px";
+
+        star.style.top=
+        Math.random()*window.innerHeight+"px";
+
+        star.style.animationDuration=
+        Math.random()*4+2+"s";
+
+        document.body.appendChild(star);
+    }
 }
 
+/* FLOWING LINES */
 
+function createFlowLines()
+{
+    for(let i=0;i<18;i++)
+    {
+        let line=document.createElement("div");
 
-function createWish(){
+        line.className="flow-line";
 
-    const input=document.getElementById("wishInput");
-    const wish=input.value.trim();
+        line.style.left=
+        Math.random()*window.innerWidth+"px";
 
-    if(wish===""){
+        line.style.top=
+        Math.random()*window.innerHeight+"px";
+
+        line.style.animationDuration=
+        Math.random()*6+5+"s";
+
+        line.style.animationDelay=
+        Math.random()*5+"s";
+
+        document.body.appendChild(line);
+    }
+}
+
+function createWish()
+{
+    let input=
+    document.getElementById("wishInput");
+
+    let wish=input.value.trim();
+
+    if(wish==="")
+    {
         return;
     }
 
-    let x=Math.random()*(window.innerWidth-100)+50;
-    let y=Math.random()*(window.innerHeight-250)+100;
+    /* FINAL STAR POSITION */
 
-    let fly=document.createElement("div");
-    fly.innerHTML="✨";
-    fly.classList.add("fly-star");
+    let finalX=
+    Math.random()*
+    (wishArea.clientWidth-100)+50;
 
-    fly.style.setProperty("--x",x+"px");
-    fly.style.setProperty("--y",y+"px");
+    let finalY=
+    Math.random()*
+    (wishArea.clientHeight-150)+50;
 
-    explore.appendChild(fly);
+    /* GOLDEN MOVING STAR */
+
+    let flyingStar=
+    document.createElement("div");
+
+    flyingStar.style.position="absolute";
+
+    flyingStar.style.width="28px";
+    flyingStar.style.height="28px";
+
+    flyingStar.style.left="50%";
+    flyingStar.style.top="120px";
+
+    flyingStar.style.background=
+    "gold";
+
+    flyingStar.style.clipPath=
+    "polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)";
+
+    flyingStar.style.boxShadow=
+    "0 0 20px gold,0 0 40px orange,0 0 60px yellow";
+
+    flyingStar.style.zIndex="999";
+
+    flyingStar.style.transition=
+    "all 2s cubic-bezier(0.2,0.8,0.2,1)";
+
+    wishArea.appendChild(flyingStar);
+
+    /* START ANIMATION */
 
     setTimeout(()=>{
 
-        fly.remove();
+        flyingStar.style.left=
+        finalX+"px";
 
-        let star=document.createElement("div");
-        star.classList.add("wish-star");
+        flyingStar.style.top=
+        finalY+"px";
 
-        star.style.left=x+"px";
-        star.style.top=y+"px";
+        flyingStar.style.transform=
+        "scale(0.7)";
+
+    },100);
+
+    /* AFTER FLIGHT */
+
+    setTimeout(()=>{
+
+        flyingStar.remove();
+
+        let star=
+        document.createElement("div");
+
+        star.className="wish-star";
+
+        star.style.left=
+        finalX+"px";
+
+        star.style.top=
+        finalY+"px";
 
         star.dataset.wish=wish;
 
+        star.dataset.completed="false";
+
         star.onclick=()=>{
+
             activeStar=star;
+
             popup.style.display="block";
-            popupWish.innerText=wish;
-        }
 
-        explore.appendChild(star);
+            popupWish.innerText=
+            star.dataset.wish;
+        };
 
-    },2400);
+        wishArea.appendChild(star);
 
-    total++;
-    updateAnalysis();
+        wishes.push({
+            wish:wish,
+            x:finalX,
+            y:finalY,
+            completed:false
+        });
+
+        localStorage.setItem(
+            "wishverse",
+            JSON.stringify(wishes)
+        );
+
+        updateStats();
+
+    },2100);
 
     input.value="";
 }
 
-function closePopup(){
+/* LOAD SAVED STARS */
+
+function loadSavedStars()
+{
+    wishes.forEach((item,index)=>{
+
+        if(item.completed)
+        {
+            return;
+        }
+
+        let star=document.createElement("div");
+
+        star.className="wish-star";
+
+        star.style.left=item.x+"px";
+
+        star.style.top=item.y+"px";
+
+        star.dataset.wish=item.wish;
+
+        star.dataset.index=index;
+
+        star.onclick=()=>{
+
+            activeStar=star;
+
+            popup.style.display="block";
+
+            popupWish.innerText=
+            item.wish;
+        };
+
+        wishArea.appendChild(star);
+
+    });
+}
+
+/* CLOSE POPUP */
+
+function closePopup()
+{
     popup.style.display="none";
 }
 
-function completeWish(){
+/* COMPLETE WISH */
 
-    if(activeStar){
+function completeWish()
+{
+    if(activeStar)
+    {
+        createConfetti();
 
-        createCosmicConfetti();
+        activeStar.style.transition=
+        "all 1s ease";
 
-        activeStar.remove();
+        activeStar.style.transform=
+        "scale(3)";
 
-        completed++;
+        activeStar.style.opacity="0";
 
-        updateAnalysis();
+        setTimeout(()=>{
 
-        popupWish.innerText="Congratulations ✨ Your dream became reality.";
+            activeStar.remove();
+
+        },1000);
+
+        let wishText=
+        activeStar.dataset.wish;
+
+        wishes=
+        wishes.map(item=>{
+
+            if(item.wish===wishText)
+            {
+                item.completed=true;
+            }
+
+            return item;
+        });
+
+        localStorage.setItem(
+            "wishverse",
+            JSON.stringify(wishes)
+        );
+
+        updateStats();
+
+        popupWish.innerText=
+        "Congratulations ✨ Your dream became reality.";
 
         setTimeout(()=>{
             popup.style.display="none";
-        },2000);
+        },2200);
     }
 }
 
-function updateAnalysis(){
+/* CONFETTI */
 
-    document.getElementById("totalStars").innerText=total;
-    document.getElementById("completedStars").innerText=completed;
-    document.getElementById("remainingStars").innerText=total-completed;
-}
-
-function createConfetti(){
-
-    for(let i=0;i<150;i++){
-
+function createConfetti()
+{
+    for(let i=0;i<120;i++)
+    {
         let confetti=document.createElement("div");
-        confetti.classList.add("confetti");
 
-        confetti.style.left=Math.random()*window.innerWidth+"px";
-        confetti.style.top=Math.random()*window.innerHeight/2+"px";
-
-        confetti.style.background=`hsl(${Math.random()*360},100%,60%)`;
+        confetti.className="confetti";
 
         document.body.appendChild(confetti);
 
-        let spark=document.createElement("div");
-        spark.classList.add("spark");
+        let colors=[
+            "#ff4d6d",
+            "#ffd60a",
+            "#00f5d4",
+            "#c77dff",
+            "#ffffff",
+            "#4cc9f0"
+        ];
 
-        spark.style.left=Math.random()*window.innerWidth+"px";
-        spark.style.top=Math.random()*window.innerHeight/2+"px";
+        confetti.style.background=
+        colors[Math.floor(Math.random()*colors.length)];
 
-        document.body.appendChild(spark);
+        confetti.style.left=
+        window.innerWidth/2+"px";
+
+        confetti.style.top=
+        window.innerHeight/2+"px";
+
+        confetti.style.width=
+        Math.random()*10+6+"px";
+
+        confetti.style.height=
+        Math.random()*10+6+"px";
+
+        confetti.style.borderRadius=
+        Math.random()>0.5?"50%":"2px";
+
+        let x=(Math.random()-0.5)*900;
+
+        let y=(Math.random()-0.5)*900;
+
+        let rotate=Math.random()*720;
+
+        confetti.animate(
+        [
+            {
+                transform:
+                `translate(0,0) rotate(0deg)`,
+                opacity:1
+            },
+
+            {
+                transform:
+                `translate(${x}px,${y}px) rotate(${rotate}deg)`,
+                opacity:0
+            }
+        ],
+        {
+            duration:2200+Math.random()*1800,
+            easing:"cubic-bezier(0.1,0.8,0.2,1)",
+            fill:"forwards"
+        });
 
         setTimeout(()=>{
             confetti.remove();
-            spark.remove();
-        },3000);
+        },4500);
     }
 }
 
+/* STATS */
+
+function updateStats()
+{
+    let total=wishes.length;
+
+    let completed=
+    wishes.filter(w=>w.completed).length;
+
+    let remaining=
+    total-completed;
+
+    document.getElementById("totalCount")
+    .innerText=total;
+
+    document.getElementById("completedCount")
+    .innerText=completed;
+
+    document.getElementById("remainingCount")
+    .innerText=remaining;
+}
+
+/* ENTER KEY */
 
 window.addEventListener("keydown",(e)=>{
 
-    if(e.key==="Enter"){
+    if(e.key==="Enter")
+    {
         createWish();
     }
+
 });
 
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
