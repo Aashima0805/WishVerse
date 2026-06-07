@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WishVerse 🌌</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="nebula"></div>
+
+<nav>
+  <div class="logo">WishVerse </div>
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#explore">Explore</a></li>
+    <li><a href="#analysis">Analysis</a></li>
+    <li><a href="#supernova">Supernova</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-eyebrow"> Cast your dreams into the cosmos </div>
+    <h1><span>Wish</span>Verse</h1>
+    <p>Every glowing star was once someone's dream.</p>
+    <p class="quote">"Some dreams take time to become stars." 🌌</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="document.getElementById('explore').scrollIntoView({behavior:'smooth'})">Make a Wish</button>
+      <button class="btn-secondary" onclick="document.getElementById('analysis').scrollIntoView({behavior:'smooth'})">My Universe</button>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="howitworks">
+  <h1 class="section-title">How It Works</h1>
+  <p class="section-sub">three steps to the cosmos</p>
+  <div class="home-grid">
+    <div class="home-card">
+      <img src="https://images.unsplash.com/photo-1502134249126-9f3755a50d78?q=80&w=900&auto=format&fit=crop">
+      <div class="card-body">
+        <div class="card-num">01 — Dream</div>
+        <h2>Write Your Dream</h2>
+        <p>Type your wish into the universe. Choose a category, set a deadline if you wish, and let your dream begin its cosmic journey.</p>
+      </div>
+    </div>
+    <div class="home-card">
+      <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=900&auto=format&fit=crop">
+      <div class="card-body">
+        <div class="card-num">02 — Ascend</div>
+        <h2>Become A Star</h2>
+        <p>Your wish transforms into a glowing star. Stars with deadlines pulse urgently as the date approaches — the cosmos remembers.</p>
+      </div>
+    </div>
+    <div class="home-card">
+      <img src="https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?q=80&w=900&auto=format&fit=crop">
+      <div class="card-body">
+        <div class="card-num">03 — Supernova</div>
+        <h2>Leave A Legacy</h2>
+        <p>Every fulfilled wish transforms into a supernova and lives forever in your cosmic archive — a record of dreams that came true.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPLORE -->
+<section id="explore">
+  <h1 class="section-title">Create A Wish 💫</h1>
+  <p class="section-sub">what does your heart desire?</p>
+
+  <div class="explore-wrapper">
+    <div class="wish-input-card">
+      <div class="category-label">Choose a category</div>
+      <div class="categories" id="catBtns"></div>
+
+      <div class="category-label">Set a deadline?</div>
+      <div class="deadline-row">
+        <div class="deadline-toggle">
+          <button class="dl-opt" id="dlNo" onclick="setDeadlineMode('none')"> No Deadline</button>
+          <button class="dl-opt" id="dlYes" onclick="setDeadlineMode('date')">📅 Set Date</button>
+        </div>
+        <div class="deadline-picker" id="deadlinePicker">
+          <input type="date" id="deadlineDate">
+        </div>
+      </div>
+
+      <div class="input-row">
+        <input type="text" id="wishInput" placeholder="Type your wish into the cosmos...">
+        <button class="send-btn" onclick="createWish()"> Send 🪄</button>
+      </div>
+    </div>
+
+    <div class="wish-controls">
+      <select class="filter-select" id="filterCat" onchange="filterWishes()">
+        <option value="all">All Categories</option>
+      </select>
+      <select class="filter-select" id="filterDeadline" onchange="filterWishes()">
+        <option value="all">All Wishes</option>
+        <option value="overdue">⚠ Overdue</option>
+        <option value="soon">⏳ Due Soon</option>
+        <option value="nodeadline">No Deadline</option>
+      </select>
+      <button class="constell-btn" id="constellBtn" onclick="toggleConstellation()">⊹ Constellation</button>
+    </div>
+
+    <div id="wishArea">
+      <canvas id="wishCanvas"></canvas>
+      <div class="wish-empty" id="wishEmpty">
+        <div class="wish-empty-icon">🌌</div>
+        <span>Your universe awaits a first star</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ANALYSIS -->
+<section id="analysis">
+  <h1 class="section-title">Wish Analytics </h1>
+  <p class="section-sub">your cosmic dashboard</p>
+  <div class="stats">
+    <div class="stat-box"><h2 id="totalCount">0</h2><p>Total Wishes</p></div>
+    <div class="stat-box"><h2 id="completedCount">0</h2><p>Completed</p></div>
+    <div class="stat-box"><h2 id="remainingCount">0</h2><p>Remaining</p></div>
+    <div class="stat-box"><h2 id="percentCount">0%</h2><p>Completion Rate</p></div>
+    <div class="stat-box"><h2 id="overdueCount">0</h2><p>Overdue</p></div>
+  </div>
+  <div class="cat-breakdown" id="catBreakdown"></div>
+</section>
+
+<!-- SUPERNOVA GRAVEYARD -->
+<section id="supernova" style="min-height:auto;">
+  <h1 class="section-title">Supernova Graveyard </h1>
+  <p class="section-sub">dreams that became reality</p>
+  <div id="supernovaGrid">
+    <div class="supernova-empty" id="supernovaEmpty">
+      <span class="supernova-empty-icon">💫</span>
+      No wishes fulfilled yet — your first supernova awaits
+    </div>
+  </div>
+</section>
+
+<!-- POPUP -->
+<div class="popup-overlay" id="popupOverlay" onclick="closePopup(event)">
+  <div class="popup" id="popup">
+    <div class="popup-cat-badge" id="popupBadge">Category</div>
+    <h2>✦ Your Wish</h2>
+    <p class="popup-wish-text" id="popupWish"></p>
+    <div class="popup-deadline-info none" id="popupDeadlineInfo"></div>
+    <div class="popup-buttons">
+      <button class="close-btn" onclick="closePopup()">Close</button>
+      <button class="delete-btn" onclick="deleteWish()">Delete</button>
+      <button class="complete-btn" onclick="completeWish()">✦ Fulfilled</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<footer>WishVerse ✦ Cast Your Dreams Into The Cosmos</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
