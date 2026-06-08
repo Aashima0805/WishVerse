@@ -15,12 +15,11 @@ let deadlineMode='none';
 // ── STATE ─────────────────────────────────────────────────────────────
 let wishes=JSON.parse(localStorage.getItem('wishverse_v3'))||[];
 let activeStar=null;
-let constellationMode=false;
+
 
 // ── DOM REFS ──────────────────────────────────────────────────────────
 const wishArea=document.getElementById('wishArea');
-const wishCanvas=document.getElementById('wishCanvas');
-const ctx=wishCanvas.getContext('2d');
+
 const popupOverlay=document.getElementById('popupOverlay');
 const popupWish=document.getElementById('popupWish');
 const popupBadge=document.getElementById('popupBadge');
@@ -37,9 +36,6 @@ renderGraveyard();
 updateStats();
 scheduleShooting();
 setInterval(scheduleShooting,8000);
-resizeCanvas();
-window.addEventListener('resize',()=>{resizeCanvas();if(constellationMode)drawConstellation();});
-// Set default deadline btn
 document.getElementById('dlNo').classList.add('active');
 
 // ── CURSOR ────────────────────────────────────────────────────────────
@@ -154,34 +150,7 @@ function scheduleShooting(){
   },Math.random()*2000);
 }
 
-// ── CANVAS ────────────────────────────────────────────────────────────
-function resizeCanvas(){
-  wishCanvas.width=wishArea.clientWidth;
-  wishCanvas.height=wishArea.clientHeight;
-}
-function drawConstellation(){
-  ctx.clearRect(0,0,wishCanvas.width,wishCanvas.height);
-  const stars=[...wishArea.querySelectorAll('.wish-star')].filter(s=>s.style.display!=='none');
-  if(stars.length<2)return;
-  const pts=stars.map(s=>({x:parseInt(s.style.left)+11,y:parseInt(s.style.top)+11,cat:s.dataset.cat}));
-  ctx.setLineDash([4,8]);
-  ctx.lineWidth=0.8;
-  for(let i=0;i<pts.length-1;i++){
-    const a=pts[i],b=pts[i+1];
-    const cat=CATEGORIES.find(c=>c.name===a.cat)||CATEGORIES[6];
-    const g=ctx.createLinearGradient(a.x,a.y,b.x,b.y);
-    g.addColorStop(0,cat.color+'55');
-    g.addColorStop(1,'rgba(143,123,255,0.2)');
-    ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);
-    ctx.strokeStyle=g;ctx.stroke();
-  }
-}
-function clearConstellation(){ctx.clearRect(0,0,wishCanvas.width,wishCanvas.height);}
-function toggleConstellation(){
-  constellationMode=!constellationMode;
-  document.getElementById('constellBtn').classList.toggle('on',constellationMode);
-  if(constellationMode)drawConstellation();else clearConstellation();
-}
+
 
 // ── CREATE WISH ───────────────────────────────────────────────────────
 function createWish(){
@@ -212,7 +181,7 @@ function createWish(){
     saveWishes();
     updateStats();
     wishEmpty.style.display='none';
-    if(constellationMode)drawConstellation();
+   
     showToast('✦ Wish cast into the cosmos');
   },1900);
 
@@ -288,7 +257,7 @@ function filterWishes(){
     else if(df==='nodeadline')matchD=!s.dataset.deadline;
     s.style.display=(matchC&&matchD)?'':'none';
   });
-  if(constellationMode)drawConstellation();
+
 }
 
 // ── POPUP ACTIONS ─────────────────────────────────────────────────────
@@ -309,7 +278,7 @@ function deleteWish(){
   popupOverlay.classList.remove('show');
   showToast('Wish removed from the cosmos');
   if(wishes.filter(w=>!w.completed).length===0)wishEmpty.style.display='flex';
-  if(constellationMode)setTimeout(drawConstellation,500);
+ 
 }
 
 function completeWish(){
@@ -329,7 +298,7 @@ function completeWish(){
   setTimeout(()=>popupOverlay.classList.remove('show'),2200);
   showToast('✦ Wish fulfilled! It now shines in your Supernova.');
   if(wishes.filter(w=>!w.completed).length===0)wishEmpty.style.display='flex';
-  if(constellationMode)setTimeout(drawConstellation,1000);
+  
 }
 
 // ── SUPERNOVA GRAVEYARD ────────────────────────────────────────────────
